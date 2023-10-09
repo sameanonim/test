@@ -1,98 +1,63 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Test" />
+# Веб-приложение для моделирования сети по продаже электроники
 
-  &#xa0;
+Это веб-приложение, созданное с помощью фреймворка Django, позволяет моделировать иерархическую структуру сети по продаже электроники. Сеть состоит из трех уровней: заводов, розничных сетей и индивидуальных предпринимателей. Каждое звено сети имеет свои характеристики, такие как название, контакты, продукты, поставщик и задолженность перед поставщиком. Веб-приложение предоставляет API интерфейс и админ-панель для управления данными сети.
 
-  <!-- <a href="https://test.netlify.app">Demo</a> -->
-</div>
+## Технические требования
 
-<h1 align="center">Test</h1>
+Для запуска веб-приложения необходимо иметь следующие компоненты:
 
-<p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8">
+- Python 3.8+
+- Django 3+
+- DRF 3.10+
+- PostgreSQL 10+
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8">
+## Установка и запуск
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8">
+Для установки и запуска веб-приложения выполните следующие шаги:
 
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8">
+1. Клонируйте репозиторий с кодом веб-приложения на свой компьютер:
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/test?color=56BEB8" /> -->
-</p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  Test 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
-
-<p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
-</p>
-
-<br>
-
-## :dart: About ##
-
-Describe your project
-
-## :sparkles: Features ##
-
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
-
-## :rocket: Technologies ##
-
-The following tools were used in this project:
-
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-
-## :white_check_mark: Requirements ##
-
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
-
-## :checkered_flag: Starting ##
-
-```bash
-# Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/test
-
-# Access
-$ cd test
-
-# Install dependencies
-$ yarn
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
+```
+git clone https://github.com/sameanonim/test/
 ```
 
-## :memo: License ##
+2. Перейдите в каталог веб-приложения:
+```
+cd test
+```
+3. Создайте виртуальное окружение:
+```
+python -m venv venv
+source venv/bin/activate
+```
+4. Установите необходимые зависимости из файла requirements.txt:
+```
+pip install -r requirements.txt
+```
+5. Создайте базу данных PostgreSQL и настройте соединение с ней в файле settings.py:
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+6. Выполните миграции для создания таблиц в базе данных:
+```
+python manage.py migrate
+```
+7. Создайте суперпользователя для доступа к админ-панели:
+```
+python manage.py createsuperuser
+```
+8. Запустите сервер разработки:
+```
+python manage.py runserver
+```
 
+Описание модели данных
+Веб-приложение использует следующую модель данных для представления сети по продаже электроники:
 
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+!Модель данных
 
-&#xa0;
+Модель данных состоит из четырех классов:
 
-<a href="#top">Back to top</a>
+NetworkNode - абстрактный базовый класс для всех звеньев сети, содержит общие поля для всех звеньев сети, такие как название, контакты, продукты, поставщик, задолженность перед поставщиком и уровень иерархии.
+Product - класс для продукта, содержит поля для названия, модели и даты выхода продукта на рынок.
+Factory - класс для завода, наследуется от NetworkNode, содержит дополнительное поле для продуктов, производимых заводом.
+RetailNetwork - класс для розничной сети, наследуется от NetworkNode, содержит дополнительное поле для веб-сайта розничной сети и продуктов, продаваемых розничной сетью.
+IndividualEntrepreneur - класс для индивидуального предпринимателя, наследуется от NetworkNode, содержит дополнительное поле для пользователя, связанного с индивидуальным предпринимателем и продуктов, продаваемых индивидуальным предпринимателем.
