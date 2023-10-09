@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "name": "Завод А",
+      "email": "factory_a@example.com",
+      "country": "Россия",
+      "city": "Москва",
+      "street": "Ленина",
+      "house_number": "1",
+      "supplier": null,
+      "debt": "0.00",
+      "created_at": "2023-10-08T16:35:22Z",
+      "level": 0,
+      "products": [
+        {
+          "id": 1,
+          "name": "Телевизор",
+          "model": "TV-A1",
+          "release_date": "2023-01-01"
+        },
+        {
+          "id": 2,
+          "name": "Ноутбук",
+          "model": "NB-A1",
+          "release_date": "2023-02-01"
+        }
+      ]
+    }
+]
